@@ -1,0 +1,35 @@
+-
+  deviceDesc: XiaoYao
+  server_url: 127.0.0.1
+  server_port: 4723
+  desired_caps:
+    platformName: Android
+    platformVersion: 5.1.1
+    deviceName: 127.0.0.1:21503 device
+    appPackage: com.chutzpah.yasibro.test
+    appActivity: com.chutzpah.yasibro.main.view.SplashActivity
+    noReset: True
+    
+-
+  deviceDesc: YeShen
+  server_url: 127.0.0.1
+  server_port: 4724
+  desired_caps:
+    platformName: Android
+    platformVersion: 5.1.1
+    deviceName: 127.0.0.1:62001 device
+    appPackage: com.chutzpah.yasibro.test
+    appActivity: com.chutzpah.yasibro.main.view.SplashActivity
+    noReset: True
+
+-
+  deviceDesc: HongMi
+  server_url: 127.0.0.1
+  server_port: 4725
+  desired_caps:
+    platformName: Android
+    platformVersion: 9.0.0
+    deviceName: f5d184c device
+    appPackage: com.chutzpah.yasibro.test
+    appActivity: com.chutzpah.yasibro.main.view.SplashActivity
+    noReset: True

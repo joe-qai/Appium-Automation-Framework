@@ -89,8 +89,15 @@ def test_01(self,driver):
 ```
 支持java、python、ruby等等
 ```
-- allure-pytest 等插件
+- allure-pytest 等插件，需要手动安装，否则执行pytest会报错
 - allure generate allure-dir -o html-dir   # 生成html报告到指定目录
 - allure serve allure-dir
 - pytest --help 帮助文档
 - - -s 输出信息 、 -q 简要信息、 -v 详细信息、-m 指定标签、-k 关键字<and/not >
+
+
+#### 更新20220707
+```text
+该项目从2020年9月开始搭建框架，也有可执行了一部分用例，但是app属于UI自动化测试范畴，版本的更新迭代很容易造成页面元素的变更，
+如果长期没有维护，那么现在可运行的脚本几乎为零，所以需要重新开发，但是这个框架属于demo，需要删除所有不适用的用例，仅留案例即可。
+```

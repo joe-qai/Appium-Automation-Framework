@@ -6,31 +6,30 @@ __author__ = 'Joe'
 
 import os
 
-# 获取攻城当前路径
-basepath = os.path.abspath(os.path.dirname(__file__))
-# cur_dir = os.path.split(os.path.abspath(__file__))[0]
+# 获取工程BASE路径
+BASEPATH = os.path.dirname(os.path.dirname(__file__))
 
 # Caps目录
-caps_dir = basepath.replace("Common", "Caps")
+caps_dir = os.path.join(BASEPATH, "Caps")
 
 # 配置文件路径
-# yaml_dir = os.path.join(basepath + "//Propertices//")
-yaml_dir = basepath.replace("Common", "Propertices")
+config_dir = os.path.join(BASEPATH, "config")
 
 # 日志路径
-logfile_dir = basepath.replace("Common", "Logs")
-#logfile_dir = os.path.join(basepath + "//Logs//")
+logfile_dir = os.path.join(BASEPATH, "Logs")
 
 # allure生成报告路径
-# allurereports_dir = os.path.join(basepath + "//AllureReports//")
-allurereports_dir = basepath.replace("Common", "allure-results")
+allurereports_dir = os.path.join(BASEPATH, "allure-results")
 
 # htmlreports_dir
-htmlreports_dir = os.path.join(basepath + "//HtmlTestReports//")
+htmlreports_dir = os.path.join(BASEPATH, "//HtmlTestReports//")
 
 # screenshotdir
-screen_dir = basepath.replace("Common", "Screenshots")
+screen_dir = os.path.join(BASEPATH, "Screenshots")
 
-apk_path = basepath.replace("Common", "apk")
+apk_path = os.path.join(BASEPATH, "apk")
 
-venv_path = basepath.replace("Common", 'venv')
+venv_path = os.path.join(BASEPATH, 'venv')
+
+if __name__ == '__main__':
+    print(config_dir)

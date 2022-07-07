@@ -7,10 +7,10 @@ import allure
 import pytest
 
 from PageObjects.exam_page import ExamPage
+from PageObjects.goToClass_page import GoToClassPage
 from PageObjects.index_page import IndexPage
 from PageObjects.login_page import LoginPage
 from TestDatas.user_login_mobile import login_success
-
 
 __author__ = 'Joe'
 
@@ -43,3 +43,7 @@ class TestDemo():
                 login_success['mobile'])
             LoginPage(login_driver).input_passwd(login_success["passwd"])
             time.sleep(2)
+
+    def test_click_class(self, login_driver):
+        GoToClassPage(login_driver).click_class()
+        time.sleep(3)

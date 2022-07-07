@@ -5,22 +5,21 @@ import os
 import socket
 import subprocess
 
-from appium import webdriver
 import yaml
+from appium import webdriver
 
-from Common.conf_dirs import caps_dir, apk_path, logfile_dir, venv_path
-from Utils.HandleLoggingNew import HandleLogger
-
+from Common.conf_dirs import caps_dir, apk_path, logfile_dir
+from Utils.HandleLoggingNew import logger
 
 __author__ = 'Joe'
+
+app_path = os.path.join(apk_path, "app-check.apk")
 
 
 class BaseDriver:
     '''
-           设备基础信息,使用yaml文件管理器
+        设备基础信息,使用yaml文件管理器
     '''
-    app_path = apk_path + "/app-ieltsBroServer-check.apk"
-    logger = HandleLogger().get_logger()
 
     def is_connect_device(self):
         '''asserts whether device is connected'''
@@ -29,15 +28,15 @@ class BaseDriver:
         new_list = dev_list[-len(dev_list):]
         for device in new_list:
             if device.startswith("127.0.0.1:21503"):
-                self.logger.info("adb connected device")
+                logger.info("adb connected device")
                 return True
             elif device.startswith("127.0.0.1:62001"):
-                self.logger.info("adb connected device")
+                logger.info("adb connected device")
                 return True
             elif device.endswith('device'):
-                self.logger.info("adb connected device")
+                logger.info("adb connected device")
                 return True
-        self.logger.info("error: no devices/emulators found")
+        logger.info("error: no devices/emulators found")
         return False
 
     def check_port(self, host, port):
@@ -47,11 +46,11 @@ class BaseDriver:
             s.connect((host, port))
             s.shutdown(2)
         except:
-            self.logger.error(
+            logger.error(
                 'port:%s is available.server not started! ' % port)
             return True
         else:
-            self.logger.info(
+            logger.info(
                 'port:%s already be in used,server started!' % port)
             return False
 
@@ -63,9 +62,9 @@ class BaseDriver:
             cmd = 'start /b appium -p %s' % port
             subprocess.call(cmd, shell=True, stdout=open(
                 file=logfile_dir + '/appium.log', mode='w'), stderr=subprocess.STDOUT)
-            self.logger.info("appium-server started！！！")
+            logger.info("appium-server started！！！")
             return True
-        self.logger.info("appium-server not started！！！")
+        logger.info("appium-server not started！！！")
         return False
 
     def stop_appium(self, port):
@@ -75,8 +74,8 @@ class BaseDriver:
         if result:
             cmd_kill = 'taskkill -f -pid %s' % result
             os.popen(cmd_kill)
-            self.logger.info("stop appium server now！！！")
-        self.logger.info('port %s is available !' % port)
+            logger.info("stop appium server now！！！")
+        logger.info('port %s is available !' % port)
 
     def base_driver(self, device, automationName="appium", noReset=False):
         '''
@@ -85,18 +84,18 @@ class BaseDriver:
         '''
         if not self.is_connect_device() and device == 'XiaoYao':
             try:
-                self.logger.info("adb not connected device")
+                logger.info("adb not connected device")
                 os.popen("adb connect 127.0.0.1:21503")
             except:
-                self.logger.error("adb connected failed!!!")
+                logger.error("adb connected failed!!!")
                 raise
 
         if not self.is_connect_device() and device == 'YeShen':
             try:
-                self.logger.info("adb not connected device")
+                logger.info("adb not connected device")
                 os.popen("adb connect 127.0.0.1:62001")
             except:
-                self.logger.error("adb connected failed!!!")
+                logger.error("adb connected failed!!!")
                 raise
 
         with open(caps_dir + "/desired_caps.yaml", encoding="utf-8") as fs:
@@ -109,12 +108,14 @@ class BaseDriver:
                 if noReset:
                     dev["desired_caps"]["noReset"] = True
                 desired_caps = dev["desired_caps"]
-                desired_caps['app'] = self.app_path
-                desired_caps["chromedriverExecutableDir"] = venv_path
+                desired_caps['app'] = app_path
+                # desired_caps["chromedriverExecutableDir"] = venv_path
 
                 if self.check_port(dev["server_url"], dev["server_port"]):
-                    self.logger.info("appium-server not started")
+                    logger.info("appium-server not started")
                     self.start_appium(dev["server_port"])
+
+                logger.info("设备配置信息:{}!".format(dev))
 
                 driver = webdriver.Remote(
                     "http://{0}:{1}/wd/hub".format(dev["server_url"], dev["server_port"]), desired_caps)

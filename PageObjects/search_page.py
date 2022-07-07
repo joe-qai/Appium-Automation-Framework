@@ -6,11 +6,8 @@ Created on 2020年8月20日
 from appium.webdriver.common.mobileby import MobileBy
 
 from Common.BasePage import BasePage, BaseAction
-from Utils.HandleLoggingNew import HandleLogger
 
 __author__ = "Joe"
-
-logger = HandleLogger().get_logger()
 
 
 class SearchPage(BasePage, BaseAction):
@@ -18,7 +15,8 @@ class SearchPage(BasePage, BaseAction):
     classdocs：元素定义内属性
     '''
     # 搜索框
-    search_bar = (MobileBy.ID, "com.chutzpah.yasibro.test:id/llSearch")
+    search_bar = (MobileBy.XPATH, "//android.widget.ImageView[@resource-id='com.chutzpah.yasibro:id/searchImageView']")
+
     # 搜索输入框
     input_search = (
         MobileBy.ID, "com.chutzpah.yasibro.test:id/search_edit_text")

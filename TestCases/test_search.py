@@ -7,7 +7,6 @@ import pytest
 
 from PageObjects.search_page import SearchPage
 
-
 __author__ = 'Joe'
 
 
@@ -15,7 +14,7 @@ class TestSearch(object):
     '''
             搜索页面操作测试用例集
     '''
-
+    
     @allure.feature("搜索页面操作")
     def test_search_page(self, common_driver):
         with allure.step("点击实时热点"):
@@ -28,6 +27,7 @@ class TestSearch(object):
         with allure.step("取消/关注达人"):
             SearchPage(common_driver).antention_superman()
 
+    @pytest.mark.skip("quxiao")
     @allure.feature("搜索内容")
     @pytest.mark.parametrize("content", ["留学"])
     def test_search_content(self, common_driver, content):

@@ -6,13 +6,9 @@ import random
 from appium.webdriver.common.mobileby import MobileBy
 
 from Common.BasePage import BasePage, BaseAction
-from Utils.HandleLoggingNew import HandleLogger
 from PageObjects.search_page import SearchPage
-from selenium.common.exceptions import NoSuchElementException
 
 __author__ = 'Joe'
-
-logger = HandleLogger().get_logger()
 
 
 class CommentPage(BasePage, BaseAction):

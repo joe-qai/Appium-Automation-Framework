@@ -12,16 +12,12 @@ from PageObjects.index_page import IndexPage
 from PageObjects.login_page import LoginPage
 from PageObjects.welcome_page import WelcomePage
 from TestDatas.user_login_mobile import login_success
-from Utils.HandleLoggingNew import HandleLogger
-
+from Utils.HandleLoggingNew import logger
 
 __author__ = 'Joe'
 
-# 创建日志收集器对象
-logger = HandleLogger().get_logger()
-
 # 如果需要多设备依次进行,在列表中追加即可:,"XiaoYao","HongMi"
-params = ["XiaoYao"]
+params = ["RedMi"]
 # 如果需要多设备并发进行，可能需要使用多线程或者selenium gird分布式
 
 with open(caps_dir + "/desired_caps.yaml", encoding="utf-8") as fs:
@@ -39,11 +35,11 @@ with open(caps_dir + "/desired_caps.yaml", encoding="utf-8") as fs:
 def login_driver(request):
     '''需要先登录再执行其他测试用例'''
     driver = BaseDriver().base_driver(device=request.param)
-    is_welcome(driver)
-    is_login_ok(driver)
+    is_second_welcome(driver)
+    # is_login_ok(driver)
     yield driver
-#     driver.close_app()
-#     driver.remove_app(packageName)
+    # driver.close_app()
+    # driver.remove_app(packageName)
     driver.quit()
 
 
@@ -96,8 +92,8 @@ def stop_appium():
 
 def is_welcome(driver):
     """
-          判断当前页面是否是欢迎页
-          启动页后面就是WelcomeActivity欢迎页面
+      判断当前页面是否是欢迎页
+      启动页后面就是WelcomeActivity欢迎页面
     """
     cur_activity = driver.current_activity
     if cur_activity.endswith("SplashActivity"):
@@ -107,19 +103,19 @@ def is_welcome(driver):
 
 def is_second_welcome(driver):
     """
-          判断当前页面是否是欢迎页
-          启动页后面就是WelcomeActivity欢迎页面
+      判断当前页面是否是欢迎页
+      启动页后面就是WelcomeActivity欢迎页面
     """
     cur_activity = driver.current_activity
-    if cur_activity.endswith("SplashActivity"):
-        WelcomePage(driver).skip_second_welcome()
+    if cur_activity.endswith("CheckPermissionActivity"):
+        WelcomePage(driver).agree_use()
 
 
 def is_login_ok(driver):
     '''
-        判断是否登录页面<启动页面activity>
-         获取当前app的activity类来判断是否是登录页
-        也就是说,如果是登录页必定调用一次登录app的方法
+    判断是否登录页面<启动页面activity>
+     获取当前app的activity类来判断是否是登录页
+    也就是说,如果是登录页必定调用一次登录app的方法
     '''
     IndexPage(driver).click_head_image()
     cur_activity = driver.current_activity
@@ -132,7 +128,7 @@ def is_login_ok(driver):
 
 def login_app(driver):
     '''
-            先触发一个必定登录的事件,判断是否跳转到登录页面,然后再进行登录操作,否则
+    先触发一个必定登录的事件,判断是否跳转到登录页面,然后再进行登录操作,否则
     '''
     LoginPage(driver).click_passwdLogin()
     LoginPage(driver).click_country_area()
@@ -145,9 +141,9 @@ def login_app(driver):
 
 def pytest_sessionfinish(session):
     '''
-            这个hook函数的原理是在allure生成的结果文件目录创建一个environment.properties配置文件
-            在allure生成报告的时候会将该配置文件的的信息写入allure测试报告中展示；
+    这个hook函数的原理是在allure生成的结果文件目录创建一个environment.properties配置文件
+    在allure生成报告的时候会将该配置文件的的信息写入allure测试报告中展示；
     session其实也是个fixture，session.config.rootdir获取工程根目录
     '''
     with open("{}/allure-results/environment.properties".format(session.config.rootdir), "w") as f:
-        f.write("browser=chromedriver\nbackend=test_venv\ndomain=ysige_APP")
+        f.write("browser=chromedriver\nbackend=test\ndomain=ieltsbro")

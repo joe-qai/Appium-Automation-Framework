@@ -23,13 +23,13 @@
     noReset: True
 
 -
-  deviceDesc: HongMi
+  deviceDesc: RedMi
   server_url: 127.0.0.1
-  server_port: 4725
+  server_port: 4723
   desired_caps:
     platformName: Android
-    platformVersion: 9.0.0
-    deviceName: f5d184c device
-    appPackage: com.chutzpah.yasibro.test
-    appActivity: com.chutzpah.yasibro.main.view.SplashActivity
+    platformVersion: 10.0.0
+    deviceName: NNL7L7HMGMR4EQQ4 device
+    appPackage: com.chutzpah.yasibro
+    appActivity: com.chutzpah.yasibro.modules.main.controllers.CheckPermissionActivity
     noReset: True

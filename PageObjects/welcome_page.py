@@ -1,16 +1,14 @@
 '''
 # -*- encoding=utf-8 -*-
 '''
-from appium.webdriver.common.mobileby import MobileBy
-
-__author__ = 'Joe'
 
 import time
 
-from Common.BasePage import BasePage, BaseAction
-from Utils.HandleLoggingNew import HandleLogger
+from appium.webdriver.common.mobileby import MobileBy
 
-logger = HandleLogger().get_logger()
+from Common.BasePage import BasePage, BaseAction
+
+__author__ = 'Joe'
 
 
 class WelcomePage(BasePage, BaseAction):
@@ -24,6 +22,12 @@ class WelcomePage(BasePage, BaseAction):
     welcome = (MobileBy.ID, "com.chutzpah.yasibro.test:id/enter_app_button")
     # 第二次启动还有一个欢迎页
     skip_welcome = (MobileBy.ID, "com.chutzpah.yasibro.test:id/skip_text_view")
+
+    agree_button2 = (MobileBy.XPATH, "//android.widget.TextView[@resource-id='com.chutzpah.yasibro:id/agreeTextView']")
+
+    def agree_use(self):
+        '''同意协议与政策'''
+        self.get_element(self.agree_button2).click()
 
     def skip_second_welcome(self):
         '''非滑屏启动页，直接跳过'''

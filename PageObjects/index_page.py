@@ -2,14 +2,12 @@
 # -*- encoding=utf-8 -*-
 '''
 import time
+
 from appium.webdriver.common.mobileby import MobileBy
 
 from Common.BasePage import BasePage, BaseAction
-from Utils.HandleLoggingNew import HandleLogger
 
 __author__ = 'Joe'
-
-logger = HandleLogger().get_logger()
 
 
 class IndexPage(BasePage, BaseAction):

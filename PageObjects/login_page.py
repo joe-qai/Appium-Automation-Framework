@@ -7,9 +7,6 @@ __author__ = 'Joe'
 from appium.webdriver.common.mobileby import MobileBy
 
 from Common.BasePage import BasePage
-from Utils.HandleLoggingNew import HandleLogger
-
-logger = HandleLogger().get_logger()
 
 
 class LoginPage(BasePage):

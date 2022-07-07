@@ -5,7 +5,7 @@
 - Libs：依赖，结合unittest测试框架的jinja2测试报告类
 - Logs：存放日志文件
 - PageObjects：存放页面对象
-- Propertices：存放配置文件
+- config：存放配置文件
 - HtmlTestReports：报告目录
 - Screenshots：截屏
 - Testcases：测试用例

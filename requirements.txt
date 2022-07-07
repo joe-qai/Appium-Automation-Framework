@@ -1,6 +1,6 @@
-allure_python_commons==2.8.40
-pytest==6.2.3
-selenium==3.141.0
+allure_python_commons==2.9.45
+Appium_Python_Client==2.2.0
 Logbook==1.5.3
-Appium_Python_Client==1.2.0
-PyYAML==5.4.1
+pytest==5.4.3
+PyYAML==6.0
+selenium==3.141.0

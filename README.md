@@ -1,6 +1,5 @@
-# ai_appium_po
-
-ai_appium_po 是一个基于 Python 的移动端 UI 自动化示例框架，采用 Page Object (PO) 分层设计，基于 Appium + pytest + Allure，包含页面对象、测试用例、设备启动配置与常用工具。该仓库为框架 demo，包含示例 PageObjects 与 TestCases，便于快速上手与二次开发。
+# Appium Automation Framework
+Appium Automation Framework 是一个基于 Python 的移动端 UI 自动化示例框架，采用 Page Object (PO) 分层设计，基于 Appium + pytest + Allure，包含页面对象、测试用例、设备启动配置与常用工具。该仓库为框架 demo，包含示例 PageObjects 与 TestCases，便于快速上手与二次开发。
 
 快速概览
 - 语言：Python（requirements.txt）

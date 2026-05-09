@@ -473,11 +473,13 @@
         }
 
         .features-grid {
-            max-width: 1440px;
+            max-width: 1200px;
             margin: 0 auto;
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            grid-template-columns: repeat(3, 1fr);
             gap: 2rem;
+            align-items: center;
+            justify-items: center;
         }
 
         .feature-card {
@@ -855,6 +857,11 @@
             .cta-content {
                 padding: 3rem 1.5rem;
             }
+
+            .features-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1.5rem;
+            }
         }
 
         @media (max-width: 480px) {
@@ -888,6 +895,11 @@
 
             .footer-top {
                 gap: 2rem;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
             }
         }
 
